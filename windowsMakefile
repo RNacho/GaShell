@@ -1,0 +1,29 @@
+SHELL = /bin/sh
+CC = x86_64-w64-mingw32-gcc
+FLG = -Wall -Werror -Wextra -pedantic -pedantic-errors -std=c11 -O2
+AR = x86_64-w64-mingw32-ar rcs
+SRC = $(filter-out sources/main.c, $(wildcard sources/*.c))
+HDR = $(patsubst sources/%.c, headers/%.h, $(SRC))
+OBJ = $(patsubst sources/%.c, mingw/objects/%.o, $(SRC))
+
+
+all: mingw/compilation/executable mingw/compilation/libGaShell.a
+
+
+mingw/compilation/executable: mingw/objects/main.o mingw/compilation/libGaShell.a
+	${CC} ${FLG} -o mingw/compilation/executable mingw/objects/main.o -Lmingw/compilation -lGaShell
+
+mingw/objects/main.o: sources/main.c headers/main.h
+	${CC} ${FLG} -c sources/main.c -o mingw/objects/main.o
+
+mingw/objects/%.o: sources/%.c headers/%.h
+	$(CC) $(FLG) -c $< -o $@
+
+mingw/compilation/libGaShell.a: ${OBJ}
+	${AR} mingw/compilation/libGaShell.a ${OBJ}
+
+
+clean:
+	rm -f mingw/objects/*.o headers/*.gch
+reset:
+	rm -f mingw/compilation/* mingw/objects/* headers/*.gch

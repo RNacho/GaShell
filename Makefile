@@ -1,6 +1,6 @@
 SHELL = /bin/sh
 CC = gcc
-FLG = -Wall -Werror -Wextra -pedantic -pedantic-errors -std=c11 -g
+FLG = -Wall -Werror -Wextra -pedantic -pedantic-errors -std=c11 -O2
 AR = ar rcs
 SRC = $(filter-out sources/main.c, $(wildcard sources/*.c))
 HDR = $(patsubst sources/%.c, headers/%.h, $(SRC))
