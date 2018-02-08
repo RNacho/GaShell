@@ -4,6 +4,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "gashLoop.h"
+#include "gashInteractive.h"
 
 #endif // mainHeader

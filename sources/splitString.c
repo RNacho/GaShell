@@ -10,15 +10,16 @@ size_t splitStringWith(char **input, char ***output, char **delimiter)
 	bool found = 0;
 	bool repeated = 0;
 	bool written = 0;
+	size_t length = strlen(*input);
 
-	for(i = 0; i < strlen(*input); i++){
+	for(i = 0; i < length; i++){
 		found = 0;
 		repeated = 0;
 
-		for(j = 0; j < strlen(*input); j++){
+		for(j = 0; j < length; j++){
 			if( *((*input) + i) == *((*delimiter) + j) ){
 				found = true;
-				for(k = 0; k < strlen(*input); k++){
+				for(k = 0; k < length; k++){
 					if( *((*input) + i + 1) == *((*delimiter) + k) ){
 						repeated = true;
 					}
@@ -26,7 +27,7 @@ size_t splitStringWith(char **input, char ***output, char **delimiter)
 			}
 		}
 
-		if(found && !repeated && written){
+		if(found && !repeated && written && (i + 1) < length){
 			++element;
 			index = 0;
 			(*output) = realloc ((*output), (element + 1) * sizeof(char *));

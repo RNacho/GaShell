@@ -15,8 +15,7 @@ int main(void)
 	//readConfigs();
 
 	//Start the shell
-	//gashLoop();
-	gashLoop(user,computer);
+	gashInteractive(user,computer);
 
 	//Clean and terminate
 	//gashExit();
