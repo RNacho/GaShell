@@ -12,29 +12,26 @@ size_t splitStringWith(char **input, char ***output, char **delimiter)
 	bool written = 0;
 	size_t length = strlen(*input);
 
-	for(i = 0; i < length; i++){
+	for (i = 0; i < length; i++) {
 		found = 0;
 		repeated = 0;
 
-		for(j = 0; j < length; j++){
-			if( *((*input) + i) == *((*delimiter) + j) ){
+		for (j = 0; j < length; j++)
+			if (*((*input) + i) == *((*delimiter) + j)) {
 				found = true;
-				for(k = 0; k < length; k++){
-					if( *((*input) + i + 1) == *((*delimiter) + k) ){
+				for (k = 0; k < length; k++)
+					if (*((*input) + i + 1) == *((*delimiter) + k))
 						repeated = true;
-					}
-				}
 			}
-		}
 
-		if(found && !repeated && written && (i + 1) < length){
+		if (found && !repeated && written && (i + 1) < length) {
 			++element;
 			index = 0;
-			(*output) = realloc ((*output), (element + 1) * sizeof(char *));
+			(*output) = realloc((*output), (element + 1) * sizeof(char *));
 		}
 
-		if(!found){
-			*((*output) + element) = realloc ((*((*output) + element)), (index + 1) * sizeof(char));
+		if (!found) {
+			*((*output) + element) = realloc((*((*output) + element)), (index + 1) * sizeof(char));
 			*(*((*output) + element) + index) = *((*input) + i);
 			++index;
 			written = true;
@@ -47,5 +44,6 @@ size_t splitStringWith(char **input, char ***output, char **delimiter)
 size_t splitString(char **input, char ***output)
 {
 	char *delimiter = " \r\a\n\t";
+
 	return splitStringWith(input, output, &delimiter);
 }

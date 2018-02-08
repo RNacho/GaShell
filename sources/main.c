@@ -8,14 +8,14 @@
 
 int main(void)
 {
-	char *user="Nacho";
-	char *computer="Torre";
+	char *user = "Nacho";
+	char *computer = "Torre";
 
 	//Read config files
 	//readConfigs();
 
 	//Start the shell
-	gashInteractive(user,computer);
+	gashInteractive(user, computer);
 
 	//Clean and terminate
 	//gashExit();
